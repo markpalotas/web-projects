@@ -21,15 +21,11 @@ public class TodoController {
   public String list(Model model,
                      @RequestParam(name = "isActive", required = false) Boolean isActive,
                      @RequestParam(name = "searchText", required = false) String searchText) {
-    if (isActive == null) {
+    if (isActive == null && searchText == null) {
       model.addAttribute("todos", todoService.findAll());
-    } else {
+    } else if (searchText == null) {
       model.addAttribute("todos", todoService.findAllActive(isActive));
-    }
-
-    if (searchText == null) {
-      model.addAttribute("todos", todoService.findAll());
-    } else {
+    } else if (isActive == null) {
       model.addAttribute("todos", todoService.findAllBySearchString(searchText));
     }
     return "todolist";
