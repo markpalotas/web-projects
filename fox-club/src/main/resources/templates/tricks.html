@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body th:object="${fox}">
+<label>Tricks</label>
+<form th:action="@{/trickCenter/(name=${fox.name})}" method="post">
+    <select name="trick">
+        <div th:unless="${fox.getTricks().contains('Write HTML')">
+            <option th:value="${tricks.get(0)}">Write HTML</option>
+            <option value="Write XML">Write XML</option>
+            <option value="Write Python">Write Python</option>
+        </div>
+    </select>
+    <input type="submit" value="Learn">
+</form>
+</body>
+</html>

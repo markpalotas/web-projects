@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <form th:action="@{/todo/}" method="get">
+        <label>Search Todos:</label>
+        <input type="text" name="searchText">
+        <input type="submit">
+    </form>
+</div>
+<h1>Todos for today:</h1>
+<a href="/todo/add">Add new todo:</a>
+<div>
+    <table>
+        <thead>
+        <th>ID</th>
+        <th>Action</th>
+        <th>Done</th>
+        <th>Urgent</th>
+        <th>Date added</th>
+        </thead>
+        <tbody>
+        <tr th:each="todo : ${todos}">
+            <td th:text="${todo.id}"></td>
+            <td th:text="${todo.title}"></td>
+            <td th:text="${todo.done}"></td>
+            <td th:text="${todo.urgent}"></td>
+            <td th:text="${todo.dateAdded}"></td>
+            <td>
+                <form th:action="@{/todo/delete}" method="post">
+                    <input type="hidden" name="id" th:value="${todo.id}">
+                    <input type="submit" value="delete">
+                </form>
+            </td>
+            <td>
+                <a th:href="@{/todo/{id}/edit(id=${todo.id})}">edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
