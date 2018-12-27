@@ -14,6 +14,9 @@ public class Todo {
   @Temporal(TemporalType.DATE)
   private Date dateAdded;
 
+  @ManyToOne
+  private Assignee assignee;
+
   public Todo(String title) {
     this();
     this.title = title;
@@ -63,5 +66,25 @@ public class Todo {
 
   public void setDateAdded(Date dateAdded) {
     this.dateAdded = dateAdded;
+  }
+
+  public Assignee getAssignee() {
+    return assignee;
+  }
+
+  public void setAssignee(Assignee assignee) {
+    this.assignee = assignee;
+  }
+
+  @Override
+  public String toString() {
+    return "Todo{" +
+            "id=" + id +
+            ", title='" + title + '\'' +
+            ", urgent=" + urgent +
+            ", done=" + done +
+            ", dateAdded=" + dateAdded +
+            ", assignee=" + assignee +
+            '}';
   }
 }

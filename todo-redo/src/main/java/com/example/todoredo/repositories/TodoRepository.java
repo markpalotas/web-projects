@@ -11,4 +11,7 @@ public interface TodoRepository extends CrudRepository<Todo, Long> {
 
   @Query("select t from Todo t where t.title like %?1%")
   List<Todo> findAllByMatchingTitle(String s);
+
+  @Query(value = "select email from assignee;", nativeQuery = true)
+  List<String> selectAssigneeEmails();
 }
