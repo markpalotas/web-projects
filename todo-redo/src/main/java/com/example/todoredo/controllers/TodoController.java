@@ -66,6 +66,7 @@ public class TodoController {
   public String editTodo(@ModelAttribute Todo todo,
                          @RequestParam(name = "name") String name) {
     //only todos have assignees
+    //TODO impl unassignment
     System.out.println(todo.toString());
     System.out.println(name);
     System.out.println(assigneeService.findAssigneeByName(name));

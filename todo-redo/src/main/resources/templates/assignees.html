@@ -26,6 +26,9 @@
             <td>
                 <a th:href="@{/todo/assignees/{id}/edit(id=${assignee.id})}">edit</a>
             </td>
+            <td>
+                <a th:href="@{/todo/assignees/{id}/show-todos(id=${assignee.id})}">Show Todos</a>
+            </td>
         </tr>
         </tbody>
     </table>

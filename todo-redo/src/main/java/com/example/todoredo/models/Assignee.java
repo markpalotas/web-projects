@@ -13,7 +13,7 @@ public class Assignee {
   private String email;
   private String name;
 
-  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "assignee")
   private List<Todo> todos;
 
   public Assignee(String name, String email) {
