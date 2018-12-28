@@ -13,6 +13,14 @@
     <input type="checkbox" th:field="*{urgent}">
     <label>Done</label>
     <input type="checkbox" th:field="*{done}">
+    <div th:object="${assignees}">
+        <label>Assignee:</label>
+        <select name="name">
+            <option th:each="assignee : ${assignees}"
+                    th:text="${assignee.name}">
+            </option>
+        </select>
+    </div>
     <input type="submit">
 </form>
 <a href="/todo/">Cancel</a>

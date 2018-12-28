@@ -32,4 +32,8 @@ public class AssigneeService {
   public void saveAssignee(Assignee assignee) {
     assigneeRepository.save(assignee);
   }
+
+  public Assignee findAssigneeByName(String name) {
+    return assigneeRepository.findAssigneeByName(name);
+  }
 }

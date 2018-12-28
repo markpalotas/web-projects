@@ -1,20 +1,27 @@
 package com.example.todoredo.controllers;
 
+import com.example.todoredo.models.Assignee;
 import com.example.todoredo.models.Todo;
+import com.example.todoredo.services.AssigneeService;
 import com.example.todoredo.services.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/todo")
 public class TodoController {
   TodoService todoService;
+  AssigneeService assigneeService;
 
   @Autowired
-  public TodoController(TodoService todoService) {
+  public TodoController(TodoService todoService, AssigneeService assigneeService) {
     this.todoService = todoService;
+    this.assigneeService = assigneeService;
   }
 
   @GetMapping({"/", "/list"})
@@ -51,11 +58,21 @@ public class TodoController {
   @GetMapping("/{id}/edit")
   public String showEdit(@PathVariable Long id, Model model) {
     model.addAttribute("todo", todoService.findTodoByID(id).get());
+    model.addAttribute("assignees", assigneeService.getAllAssignees());
     return "edit";
   }
 
   @PostMapping("/{id}/edit")
-  public String editTodo(@ModelAttribute Todo todo) {
+  public String editTodo(@ModelAttribute Todo todo,
+                         @RequestParam(name = "name") String name) {
+    //only todos have assignees
+    System.out.println(todo.toString());
+    System.out.println(name);
+    System.out.println(assigneeService.findAssigneeByName(name));
+
+    todo.setAssignee(assigneeService.findAssigneeByName(name));
+    System.out.println(todo.getAssignee());
+
     todoService.saveTodo(todo);
     return "redirect:/todo/";
   }

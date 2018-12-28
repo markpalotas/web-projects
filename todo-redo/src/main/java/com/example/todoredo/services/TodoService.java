@@ -1,5 +1,6 @@
 package com.example.todoredo.services;
 
+import com.example.todoredo.models.Assignee;
 import com.example.todoredo.models.Todo;
 import com.example.todoredo.repositories.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,4 +41,5 @@ public class TodoService {
   public List<Todo> findAllBySearchString(String searchText) {
     return todoRepository.findAllByMatchingTitle(searchText);
   }
+
 }
