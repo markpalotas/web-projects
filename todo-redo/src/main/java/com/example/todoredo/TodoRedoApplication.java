@@ -32,17 +32,13 @@ public class TodoRedoApplication implements CommandLineRunner {
     Assignee john = new Assignee("John", "john@doe.com");
     List<Todo> todos = Arrays.asList(new Todo("Fix the code."));
     john.setTodos(todos);
-    //todoRepository.saveAll(todos);
+
     assigneeRepository.save(john);
 
     Assignee jane = new Assignee("Jane", "jane@doe.com");
     List<Todo> todos_1 = Arrays.asList(new Todo("Fix the code. Again."));
     john.setTodos(todos_1);
     assigneeRepository.save(jane);
-
-    System.out.println(assigneeRepository.findAll());
-
-    System.out.println(todoRepository.selectAssigneeEmails());
 
     todoRepository.save(new Todo("Clean the room"));
     todoRepository.save(new Todo("Clean the fox"));
