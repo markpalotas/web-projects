@@ -42,4 +42,8 @@ public class TodoService {
     return todoRepository.findAllByMatchingTitle(searchText);
   }
 
+  public List<Todo> findByDueDate(String dueDate) {
+    return todoRepository.findByDueDate(dueDate);
+  }
+
 }

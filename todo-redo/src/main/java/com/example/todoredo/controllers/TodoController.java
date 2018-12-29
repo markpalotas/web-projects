@@ -67,4 +67,11 @@ public class TodoController {
     todoService.saveTodo(todo);
     return "redirect:/todo/";
   }
+
+  @GetMapping("/date")
+  public String filterDate(@RequestParam(name = "dueDate") String dueDate,
+                           Model model) {
+    model.addAttribute("todos", todoService.findByDueDate(dueDate));
+    return "todolist";
+  }
 }

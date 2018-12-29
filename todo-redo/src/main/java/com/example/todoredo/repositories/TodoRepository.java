@@ -14,4 +14,6 @@ public interface TodoRepository extends CrudRepository<Todo, Long> {
 
   @Query(value = "select email from assignee;", nativeQuery = true)
   List<String> selectAssigneeEmails();
+
+  List<Todo> findByDueDate(String dueDate);
 }
