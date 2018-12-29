@@ -6,6 +6,9 @@ import com.example.todoredo.repositories.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,6 +47,20 @@ public class TodoService {
 
   public List<Todo> findByDueDate(String dueDate) {
     return todoRepository.findByDueDate(dueDate);
+  }
+
+  public Date convertDate(String stringDate) {
+    Date date = null;
+    try {
+      date = new SimpleDateFormat("yyyy-MM-dd").parse(stringDate);
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    return date;
+  }
+
+  public List<Todo> findByDateAdded(Date date) {
+    return todoRepository.findByDateAdded(date);
   }
 
 }

@@ -4,6 +4,7 @@ import com.example.todoredo.models.Todo;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.Date;
 import java.util.List;
 
 public interface TodoRepository extends CrudRepository<Todo, Long> {
@@ -16,4 +17,6 @@ public interface TodoRepository extends CrudRepository<Todo, Long> {
   List<String> selectAssigneeEmails();
 
   List<Todo> findByDueDate(String dueDate);
+
+  List<Todo> findByDateAdded(Date date);
 }

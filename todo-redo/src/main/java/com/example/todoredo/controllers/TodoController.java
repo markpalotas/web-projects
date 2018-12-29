@@ -8,6 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 @Controller
 @RequestMapping("/todo")
@@ -68,10 +72,17 @@ public class TodoController {
     return "redirect:/todo/";
   }
 
-  @GetMapping("/date")
-  public String filterDate(@RequestParam(name = "dueDate") String dueDate,
-                           Model model) {
+  @GetMapping("/dueDate")
+  public String filterDueDate(@RequestParam(name = "dueDate") String dueDate,
+                              Model model) {
     model.addAttribute("todos", todoService.findByDueDate(dueDate));
+    return "todolist";
+  }
+
+  @GetMapping("/creationDate")
+  public String filterCreationDate(@RequestParam(name = "creationDate") String date,
+                                   Model model) {
+    model.addAttribute("todos", todoService.findByDateAdded(todoService.convertDate(date)));
     return "todolist";
   }
 }

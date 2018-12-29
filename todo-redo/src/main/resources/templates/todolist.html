@@ -17,9 +17,16 @@
     </form>
 </div>
 <div>
-    <form th:action="@{/todo/date}" method="get">
+    <form th:action="@{/todo/dueDate}" method="get">
         <label>Search by due date:</label>
         <input type="date" name="dueDate">
+        <input type="submit">
+    </form>
+</div>
+<div>
+    <form th:action="@{/todo/creationDate}" method="get">
+        <label>Search by creation date:</label>
+        <input type="date" name="creationDate">
         <input type="submit">
     </form>
 </div>
