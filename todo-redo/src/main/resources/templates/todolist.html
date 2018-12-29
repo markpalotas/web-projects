@@ -43,6 +43,10 @@
             <td>
                 <a th:href="@{/todo/{id}/edit(id=${todo.id})}">edit</a>
             </td>
+            <td>
+                <a th:if="${todo.assignee != null}" th:href="@{/todo/assignees/{id}/show-todos(id=${todo.assignee.id})}"
+                   th:text="${todo.assignee.name}"></a>
+            </td>
         </tr>
         </tbody>
     </table>

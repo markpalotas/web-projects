@@ -1,6 +1,5 @@
 package com.example.todoredo.controllers;
 
-import com.example.todoredo.models.Assignee;
 import com.example.todoredo.models.Todo;
 import com.example.todoredo.services.AssigneeService;
 import com.example.todoredo.services.TodoService;
@@ -9,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/todo")
