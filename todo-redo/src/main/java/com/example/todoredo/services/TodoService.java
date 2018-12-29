@@ -63,4 +63,8 @@ public class TodoService {
     return todoRepository.findByDateAdded(date);
   }
 
+  public List<Todo> findByAssigneeName(String name) {
+    return todoRepository.findByAssigneeName(name);
+  }
+
 }

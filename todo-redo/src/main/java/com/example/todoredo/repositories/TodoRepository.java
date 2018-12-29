@@ -19,4 +19,6 @@ public interface TodoRepository extends CrudRepository<Todo, Long> {
   List<Todo> findByDueDate(String dueDate);
 
   List<Todo> findByDateAdded(Date date);
+
+  List<Todo> findByAssigneeName(String name);
 }

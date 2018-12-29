@@ -1,5 +1,6 @@
 package com.example.todoredo.controllers;
 
+import com.example.todoredo.models.Assignee;
 import com.example.todoredo.models.Todo;
 import com.example.todoredo.services.AssigneeService;
 import com.example.todoredo.services.TodoService;
@@ -75,6 +76,7 @@ public class TodoController {
   @GetMapping("/dueDate")
   public String filterDueDate(@RequestParam(name = "dueDate") String dueDate,
                               Model model) {
+    //TODO convert date from string
     model.addAttribute("todos", todoService.findByDueDate(dueDate));
     return "todolist";
   }
@@ -84,5 +86,13 @@ public class TodoController {
                                    Model model) {
     model.addAttribute("todos", todoService.findByDateAdded(todoService.convertDate(date)));
     return "todolist";
+  }
+
+  @GetMapping("/showByAssignee")
+  public String filterByAssignee(@RequestParam(name = "name") String name,
+                                 Model model) {
+
+    model.addAttribute("todos", todoService.findByAssigneeName(name));
+    return "todoList";
   }
 }

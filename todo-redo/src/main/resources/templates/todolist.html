@@ -30,6 +30,13 @@
         <input type="submit">
     </form>
 </div>
+<div>
+    <form th:action="@{/todo/showByAssignee}" method="get">
+        <label>Search by assignee:</label>
+        <input type="text" name="name">
+        <input type="submit">
+    </form>
+</div>
 <h1>Todos for today:</h1>
 <a href="/todo/add">Add new todo:</a>
 <div>
