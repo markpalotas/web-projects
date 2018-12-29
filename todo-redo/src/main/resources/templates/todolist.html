@@ -26,6 +26,7 @@
         <th>Done</th>
         <th>Urgent</th>
         <th>Date added</th>
+        <th>Due date</th>
         </thead>
         <tbody>
         <tr th:each="todo : ${todos}">
@@ -34,6 +35,7 @@
             <td th:text="${todo.done}"></td>
             <td th:text="${todo.urgent}"></td>
             <td th:text="${todo.dateAdded}"></td>
+            <td th:text="${todo.dueDate}"></td>
             <td>
                 <form th:action="@{/todo/delete}" method="post">
                     <input type="hidden" name="id" th:value="${todo.id}">

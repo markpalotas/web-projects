@@ -13,6 +13,7 @@ public class Todo {
   private boolean done;
   @Temporal(TemporalType.DATE)
   private Date dateAdded;
+  private String dueDate;
 
   @ManyToOne
   private Assignee assignee;
@@ -74,6 +75,14 @@ public class Todo {
 
   public void setAssignee(Assignee assignee) {
     this.assignee = assignee;
+  }
+
+  public String getDueDate() {
+    return dueDate;
+  }
+
+  public void setDueDate(String dueDate) {
+    this.dueDate = dueDate;
   }
 
   @Override
