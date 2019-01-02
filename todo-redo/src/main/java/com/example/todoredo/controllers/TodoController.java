@@ -1,6 +1,5 @@
 package com.example.todoredo.controllers;
 
-import com.example.todoredo.models.Assignee;
 import com.example.todoredo.models.Todo;
 import com.example.todoredo.services.AssigneeService;
 import com.example.todoredo.services.TodoService;
@@ -8,11 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 
 @Controller
 @RequestMapping("/todo")
@@ -55,6 +49,7 @@ public class TodoController {
   public String deleteTodo(@ModelAttribute Todo todo) {
     todoService.deleteTodo(todo);
     return "redirect:/todo/";
+    //TODO empty tasks remain after deletion when they have assignees / persist option?
   }
 
   @GetMapping("/{id}/edit")
@@ -91,7 +86,6 @@ public class TodoController {
   @GetMapping("/showByAssignee")
   public String filterByAssignee(@RequestParam(name = "name") String name,
                                  Model model) {
-
     model.addAttribute("todos", todoService.findByAssigneeName(name));
     return "todoList";
   }

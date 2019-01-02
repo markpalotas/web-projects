@@ -22,6 +22,7 @@ public class Assignee {
   }
 
   public Assignee() {
+    todos = new ArrayList<>();
   }
 
   public String getName() {

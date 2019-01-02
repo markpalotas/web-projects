@@ -1,10 +1,16 @@
 package com.example.programmerfoxclubredo.models;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Fox {
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
   private String name;
+  @ElementCollection
   private List<String> tricks;
   private String food;
   private String drink;
@@ -14,6 +20,14 @@ public class Fox {
     this.tricks = new ArrayList<>();
     this.food = "Salad";
     this.drink = "Water";
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public Fox() {
