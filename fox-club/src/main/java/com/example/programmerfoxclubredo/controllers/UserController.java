@@ -37,9 +37,23 @@ public class UserController {
       userService.saveUser(user);
       return "redirect:/";
     } else {
-      attributes.addAttribute("error", "Passwords don't match!");
+      attributes.addAttribute("error", "Please check your password!");
       return "redirect:/register";
     }
+  }
 
+  @GetMapping("/user-login")
+  public String getLoginPage() {
+    return "user-login";
+  }
+
+  @PostMapping("/user-login")
+  public String loginUser(@ModelAttribute User user, Model model) {
+    if (userService.validatePassword(user) && userService.isRegisteredUser(user)) {
+      return "redirect:/" + userService.findUserId(user.getUsername());
+    } else {
+      model.addAttribute("error", "Can't log in. Please check your password/username or register");
+      return "user-login";
+    }
   }
 }

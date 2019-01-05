@@ -5,8 +5,10 @@
     <title>Title</title>
 </head>
 <body th:object="${fox}">
-<a th:href="|/nutritionStore/?name=${fox.name}|">nutrition</a>
-<div><p th:text="|This is *{name} Fox Currently living on *{food} and *{drink} He knows *{tricks.size()} tricks.|"></p></div>
+<a href="/">LOGOUT</a>
+<a th:href="|/${userId}/nutritionStore/?name=${fox.name}|">nutrition</a>
+<a th:href="|/${userId}/trickCenter/?name=${fox.name}|">tricks</a>
+<div><p th:text="|This is *{name} Fox Currently living on *{food} and *{drink} He knows *{tricks.size()} trick(s).|"></p></div>
 <h1>Known tricks</h1>
 <div th:if="*{tricks.isEmpty()}" th:text="|No tricks yet! Go and learn some!|"></div>
 <ul th:each="trick : *{tricks}">

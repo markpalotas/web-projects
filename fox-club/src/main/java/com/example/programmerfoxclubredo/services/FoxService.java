@@ -1,6 +1,8 @@
 package com.example.programmerfoxclubredo.services;
 
 import com.example.programmerfoxclubredo.models.Fox;
+import com.example.programmerfoxclubredo.repositories.FoxRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,9 +13,11 @@ import java.util.Optional;
 public class FoxService {
   private List<Fox> foxes;
   private List<String> availableTricks;
+  @Autowired
+  FoxRepository foxRepository;
+
 
   public FoxService() {
-    this.foxes = new ArrayList<>();
     this.availableTricks = new ArrayList<>();
     availableTricks.add("Write HTML");
     availableTricks.add("Write XML");
@@ -21,17 +25,12 @@ public class FoxService {
     availableTricks.add("Write sum code");
   }
 
-  public void addFox(String name) {
-    foxes.add(new Fox(name));
+  public void addFox(Fox fox) {
+    foxRepository.save(fox);
   }
 
   public Optional<Fox> findFox(String name) {
-    for (Fox fox : foxes) {
-      if (fox.getName().equals(name)) {
-        return Optional.of(fox);
-      }
-    }
-    return Optional.empty();
+    return foxRepository.findByName(name);
   }
 
   public int foxesSize() {

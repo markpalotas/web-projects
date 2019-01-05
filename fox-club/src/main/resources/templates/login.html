@@ -8,10 +8,9 @@
 <h1>Welcome to programmer fox club</h1>
 Please provide a name..
 
-<form th:action="@{/login}" th:method="post">
+<form th:action="@{/{id}/login(id=${userId})}" th:method="post">
     <input type="text" name="name">
     <input type="submit" value="GO">
 </form>
-
 </body>
 </html>

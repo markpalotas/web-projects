@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class MainService {
 
-  public boolean userNameEmpty(String userName) {
-    if (userName == null || userName.isEmpty()) {
+  public boolean foxNameEmpty(String foxName) {
+    if (foxName == null || foxName.isEmpty()) {
       return true;
     }
     return false;

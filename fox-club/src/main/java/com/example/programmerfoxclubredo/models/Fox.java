@@ -15,6 +15,17 @@ public class Fox {
   private String food;
   private String drink;
 
+  @OneToOne(mappedBy = "fox", fetch = FetchType.EAGER)
+  private User user;
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
+
   public Fox(String name) {
     this.name = name;
     this.tricks = new ArrayList<>();

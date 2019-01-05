@@ -6,12 +6,14 @@
 </head>
 <body th:object="${fox}">
 <label>Tricks</label>
-<form th:action="@{/trickCenter/(name=${fox.name})}" method="post">
+<form th:action="@{/1/trickCenter/(name=${fox.name})}" method="post">
     <select name="trick">
-        <div th:unless="${fox.getTricks().contains('Write HTML')">
-            <option th:value="${tricks.get(0)}">Write HTML</option>
+        <!-- <div th:unless="${fox.getTricks().contains('Write HTML')"> -->
+        <!-- <option th:value="${tricks.get(0)}">Write HTML</option> -->
+        <div>
             <option value="Write XML">Write XML</option>
             <option value="Write Python">Write Python</option>
+            <option value="Write HTML">Write HTML</option>
         </div>
     </select>
     <input type="submit" value="Learn">

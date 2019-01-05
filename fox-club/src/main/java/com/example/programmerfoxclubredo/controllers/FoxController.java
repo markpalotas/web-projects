@@ -17,41 +17,51 @@ public class FoxController {
     this.foxService = foxService;
   }
 
-  @GetMapping("/nutritionStore")
-  public String displayNutrition(@RequestParam(name = "name") String userName,
+  @GetMapping("/{id}/nutritionStore")
+  public String displayNutrition(@RequestParam(name = "name") String foxName,
+                                 @PathVariable Long id,
                                  Model model) {
-    model.addAttribute("fox", foxService.findFox(userName).get());
+    model.addAttribute("fox", foxService.findFox(foxName).get());
+    model.addAttribute("userId", id);
     return "nutrition";
   }
 
-  @PostMapping("/nutritionStore")
+  @PostMapping("/{id}/nutritionStore")
   public String changeNutrition(@ModelAttribute("food") String food,
                                 @ModelAttribute("drink") String drink,
-                                @RequestParam(name = "name") String userName,
+                                @RequestParam(name = "name") String foxName,
+                                @PathVariable Long id,
                                 RedirectAttributes attributes) {
-    foxService.findFox(userName).get().setFood(food);
-    foxService.findFox(userName).get().setDrink(drink);
-    attributes.addAttribute("name", userName);
-    return "redirect:/";
+    System.out.println(id);
+    foxService.findFox(foxName).get().setFood(food);
+    foxService.findFox(foxName).get().setDrink(drink);
+    foxService.addFox(foxService.findFox(foxName).get());
+    attributes.addAttribute("name", foxName);
+    return "redirect:/" + id;
   }
 
-  @GetMapping("/trickCenter")
+  @GetMapping("/{id}/trickCenter")
   public String displayTrickCenter(@RequestParam(name = "name") String userName,
+                                   @PathVariable Long id,
                                    Model model) {
     model.addAttribute("fox", foxService.findFox(userName).get());
     model.addAttribute("tricks", foxService.getAvailableTricks());
+    model.addAttribute("userId", id);
     return "tricks";
   }
 
-  @PostMapping("/trickCenter")
-  public String updateTricks(@RequestParam(name = "name") String userName,
+  @PostMapping("{id}/trickCenter")
+  public String updateTricks(@RequestParam(name = "name") String foxName,
                              @ModelAttribute(name = "trick") String trick,
+                             @PathVariable Long id,
                              RedirectAttributes attributes) {
-    Fox fox = foxService.findFox(userName).get();
+    System.out.println(trick);
+    Fox fox = foxService.findFox(foxName).get();
     if (!foxService.isDuplicateTrick(fox, trick)) {
       fox.addTrick(trick);
+      foxService.addFox(fox);
     }
-    attributes.addAttribute("name", userName);
-    return "redirect:/";
+    attributes.addAttribute("name", foxName);
+    return "redirect:/" + id;
   }
 }

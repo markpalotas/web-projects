@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form th:action="@{/nutritionStore/(name=${fox.name})}" method="post">
+<form th:action="@{/1/nutritionStore/(name=${fox.name})}" method="post">
     <label for="food">Food</label>
     <select name="food" id="food">
         <option th:value="${fox.food}" th:text="${fox.food}"></option>

@@ -1,9 +1,6 @@
 package com.example.programmerfoxclubredo.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class User {
@@ -13,6 +10,17 @@ public class User {
   private String username;
   private String password1;
   private String password2;
+
+  @OneToOne()
+  private Fox fox;
+
+  public Fox getFox() {
+    return fox;
+  }
+
+  public void setFox(Fox fox) {
+    this.fox = fox;
+  }
 
   public User() {
   }
